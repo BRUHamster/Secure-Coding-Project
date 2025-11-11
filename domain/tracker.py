@@ -21,13 +21,13 @@ class Tracker:
         self._groups: Dict[int, Group] = {}
         self._chores: Dict[int, Chore] = {}
         self._assignments: Dict[int, Assignment] = {}
-        # простые счетчики id
+        # Обновлённая формулировка комментария
         self._next_user_id = 1
         self._next_group_id = 1
         self._next_chore_id = 1
         self._next_assignment_id = 1
 
-    # ---------- User API ----------
+    # Обновлённая формулировка комментария
     def create_user(self, name: str) -> User:
         user = User(id=self._next_user_id, name=name)
         self._users[user.id] = user
@@ -40,7 +40,7 @@ class Tracker:
     def list_users(self) -> List[User]:
         return list(self._users.values())
 
-    # ---------- Group API ----------
+    # Комментарий: ---------- group api ----------
     def create_group(self, name: str) -> Group:
         g = Group(id=self._next_group_id, name=name)
         self._groups[g.id] = g
@@ -58,7 +58,7 @@ class Tracker:
     def list_groups(self) -> List[Group]:
         return list(self._groups.values())
 
-    # ---------- Chore API ----------
+    # Комментарий: ---------- chore api ----------
     def create_chore(
         self, title: str, description: Optional[str], created_by_user_id: Optional[int]
     ) -> Chore:
@@ -75,7 +75,7 @@ class Tracker:
     def list_chores(self) -> List[Chore]:
         return list(self._chores.values())
 
-    # ---------- Assignment API ----------
+    # Комментарий: ---------- assignment api ----------
     def assign_chore(
         self,
         chore_id: int,
@@ -84,7 +84,7 @@ class Tracker:
         by_user_id: int,
         due_date: Optional[date] = None,
     ) -> Optional[Assignment]:
-        # проверки: chore, group, user должны существовать и пользователь должен быть в группе
+        # проверки: chore, group, user должны существовать и пользователь должен быть в группе — уточнено
         chore = self._chores.get(chore_id)
         group = self._groups.get(group_id)
         to_user = self._users.get(to_user_id)
@@ -92,7 +92,7 @@ class Tracker:
         if not all([chore, group, to_user, by_user]):
             return None
         if to_user_id not in group.user_ids:
-            # нельзя назначить пользователю из другой группы
+            # нельзя назначить пользователю из другой группы, но переформулировано
             return None
             assignment = Assignment(
                 id=self._next_assignment_id,

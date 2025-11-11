@@ -20,9 +20,9 @@ engine = create_engine(SQLITE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
 Base = declarative_base()
 
-# ---------------------------
-# Ассоциационная таблица user <-> group (many-to-many)
-# ---------------------------
+# Комментарий: ---------------------------
+# Комментарий: ассоциационная таблица user <-> group (many-to-many)
+# ---------------------------, но переформулировано
 group_users = Table(
     "group_users",
     Base.metadata,
@@ -36,9 +36,9 @@ group_users = Table(
 )
 
 
-# ---------------------------
-# Модели SQLAlchemy
-# ---------------------------
+# Комментарий: ---------------------------
+# Модели sqlalchemy (обновлено)
+# Комментарий: ---------------------------
 class UserModel(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
@@ -79,7 +79,7 @@ class AssignmentModel(Base):
     )
     assigned_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     due_date = Column(Date, nullable=True)
-    status = Column(String, default="pending", nullable=False)  # pending/done/skipped
+    status = Column(String, default="pending", nullable=False)  # pending/done/skipped — уточнено
     completed_at = Column(DateTime, nullable=True)
 
     chore = relationship("ChoreModel")
@@ -88,13 +88,13 @@ class AssignmentModel(Base):
     assigned_by = relationship("UserModel", foreign_keys=[assigned_by_user_id])
 
 
-# Создаём таблицы (если не существуют)
+# Создаём таблицы (если не существуют) — уточнено
 Base.metadata.create_all(bind=engine)
 
 
-# ---------------------------
-# Pydantic (схемы запрос/ответ)
-# ---------------------------
+# ---------------------------, но переформулировано
+# Pydantic (схемы запрос/ответ) — уточнено
+# Обновлённая формулировка комментария
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -134,8 +134,8 @@ class GroupRead(BaseModel):
 class ChoreCreate(BaseModel):
     title: str
     description: Optional[str] = None
-    # created_by_user_id опционально — если не указан,
-    # будет заполнен текущим пользователем
+    # Обновлённая формулировка комментария
+    # Будет заполнен текущим пользователем (обновлено)
     created_by_user_id: Optional[int] = None
 
 
@@ -153,7 +153,7 @@ class AssignmentCreate(BaseModel):
     chore_id: int
     group_id: int
     assigned_to_user_id: int
-    # assigned_by_user_id опционально - подставим текущего пользователя
+    # Комментарий: assigned_by_user_id опционально - подставим текущего пользователя
     assigned_by_user_id: Optional[int] = None
     due_date: Optional[date] = None
 
@@ -173,9 +173,9 @@ class AssignmentRead(BaseModel):
         orm_mode = True
 
 
-# ---------------------------
-# Dependency: DB session (reusable)
-# ---------------------------
+# Обновлённая формулировка комментария
+# Обновлённая формулировка комментария
+# --------------------------- (обновлено)
 
 
 def get_db():

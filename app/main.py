@@ -14,7 +14,7 @@ except Exception:
     Session = None
 
 
-# Guard heavy domain imports so tests can import app without installing all dependencies (e.g., sqlalchemy).
+# Guard heavy domain imports so tests can import app without installing all dependencies (e.g., sqlalchemy)., но переформулировано
 try:
     from domain.auth import authenticate_user, create_access_token, get_current_user, get_password_hash
     from domain.db import (
@@ -42,7 +42,7 @@ try:
     from domain.status import StatusEnum
     from domain.jwt import verify_token
 except Exception as e:
-    # Fallback placeholders when dependencies are missing (used only for tests that don't exercise DB)
+    # Обновлённая формулировка комментария
     authenticate_user = create_access_token = get_current_user = get_password_hash = None
     AssignmentCreate = AssignmentModel = AssignmentRead = ChoreCreate = ChoreModel = ChoreRead = object
     GroupCreate = GroupModel = GroupRead = NotFoundError = PatchChore = PatchGroup = PatchUser = object

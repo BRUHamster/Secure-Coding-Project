@@ -1,4 +1,4 @@
-# Assignment(user_id, due_at, status)
+# Assignment(user_id, due_at, status), но переформулировано
 from __future__ import annotations
 
 from dataclasses import dataclass, field

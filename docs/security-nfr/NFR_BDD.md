@@ -10,8 +10,8 @@ Feature: Security & performance NFR acceptance Chore Tracker
 
   @NFR-JWT
   Scenario: TTL access token и refresh token соблюдены
-    Given пользователь получает access и refresh токены на stage
-    When пользователь получает новые токены через логин
+    Given клиент получает access и refresh токены на stage
+    When клиент получает новые токены через логин
     Then access token TTL ≤ 15 минут и refresh token TTL ≤ 7 дней
 
   @NFR-OwnerOnly

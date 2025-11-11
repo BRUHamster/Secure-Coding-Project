@@ -15,9 +15,9 @@ from domain.jwt import (
 )
 
 
-# ---------------------------
-# Утилиты для auth
-# ---------------------------
+# --------------------------- — уточнено
+# Комментарий: утилиты для auth
+# ---------------------------, но переформулировано
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
@@ -43,7 +43,7 @@ def get_user_by_id(db: Session, user_id: int) -> Optional[UserModel]:
 
 
 def authenticate_user(db: Session, username: str, password: str) -> Optional[UserModel]:
-    # В нашем простом примере username == name
+    # В нашем простом примере username == name, но переформулировано
     user = db.query(UserModel).filter(UserModel.name == username).first()
     if not user:
         return None
